@@ -1,0 +1,29 @@
+{
+  "name": "vaulta-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo for Vaulta: SDK, client and server. Build, test and release tooling for the Vaulta project.",
+  "scripts": {
+    "install:all": "npm install --prefix package && npm install --prefix apps/server && npm install --prefix apps/client",
+    "build:sdk": "npm --prefix package run build",
+    "build:server": "npm --prefix apps/server run build",
+    "build:client": "npm --prefix apps/client run build",
+    "build": "npm run build:sdk && npm run build:server && npm run build:client",
+    "dev:client": "npm --prefix apps/client run dev",
+    "dev:server": "npm --prefix apps/server run dev",
+    "clean": "rimraf package/dist && rimraf apps/server/dist && rimraf apps/client/dist",
+    "lint": "npm --prefix apps/client run lint || true",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,scss,html}\"",
+    "check-format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,css,scss,html}\"",
+    "format:all": "npm run format",
+    "test": "echo \"No top-level tests configured. Run package-specific tests.\"",
+    "release:sdk": "npm --prefix package run release",
+    "publish:sdk": "npm --prefix package run release"
+  },
+  "keywords": ["vaulta","sdk","client","server","monorepo","file-upload","s3","express","react","typescript"],
+  "author": "Hasnain",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
+}

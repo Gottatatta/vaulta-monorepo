@@ -1,0 +1,87 @@
+import mongoose, { Model, Schema, Types } from 'mongoose';
+import { formatBytes } from '../utils/byte.utils';
+import { FileDocument } from "../types";
+import { UploadSourceEnum } from "../enums";
+
+
+interface FileModelType extends Model<FileDocument> {
+  calculateUsage(userId: Types.ObjectId): Promise<number>;
+}
+
+const FileSchema = new Schema<FileDocument, FileModelType>(
+  {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    originalName: {
+      type: String,
+      required: true,
+    },
+    storageKey: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    mimeType: {
+      type: String,
+      required: true,
+    },
+    size: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
+    ext: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: false,
+    },
+    uploadVia: {
+      type: String,
+      enum: Object.keys(UploadSourceEnum),
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+    toObject: {
+      transform: (doc, ret) => {
+        ret.formattedSize = formatBytes(ret.size);
+        return ret;
+      },
+    },
+    toJSON: {
+      transform: (doc, ret) => {
+        ret.formattedSize = formatBytes(ret.size);
+        return ret;
+      },
+    },
+  },
+);
+
+FileSchema.statics.calculateUsage = async function (userId: Types.ObjectId): Promise<number> {
+  const result = await this.aggregate([
+    { $match: { userId } },
+    {
+      $group: {
+        _id: null,
+        totalSize: {
+          $sum: '$size',
+        },
+      },
+    },
+  ]);
+  return result[0]?.totalSize || 0;
+};
+
+FileSchema.index({ userId: 1 });
+FileSchema.index({ createdAt: -1 });
+
+const FileModel = mongoose.model<FileDocument, FileModelType>('File', FileSchema);
+
+export default FileModel;
